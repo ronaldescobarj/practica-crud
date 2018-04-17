@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+<a class="btn btn-info" href="/posts">Volver a posts</a>
+<h1>Post</h1>
+<table class="table table-striped">
+    <tr>
+        <td>
+            <b>Id:</b>
+        </td>
+        <td th:text="${post.id}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Titulo:</b>
+        </td>
+        <td th:text="${post.title}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Texto:</b>
+        </td>
+        <td th:text="${post.text}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Categoria:</b>
+        </td>
+        <td th:text="${post.postCategory.name}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Usuario:</b>
+        </td>
+        <td th:text="${post.user.name}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Fecha</b>
+        </td>
+        <td th:text="${post.creationDate}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Likes:</b>
+        </td>
+        <td th:text="${post.likes}">
+        </td>
+    </tr>
+</table>
+<a class="btn btn-primary" th:href="${'/like/' + post.id}">Like</a>
+<a class="btn btn-danger" th:href="${'/dislike/' + post.id}">Dislike</a>
+<form action="/comment" method="POST">
+    <input type="hidden" name="post" th:value="${post.id}">
+    <div class="col-6 form-group">
+        <label for="text">Agregar comentario</label>
+        <textarea class="form-control" required name="text" id="text" cols="30" rows="10"></textarea>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Guardar"></input>
+</form>
+<h3>Comentarios</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Comentario
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Likes
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+        <tr th:each="comment : ${post.comments}">
+            <td th:text="${comment.id}">
+            </td>
+            <td th:text="${comment.text}">
+            </td>
+            <td th:text="${comment.creationDate}">
+            </td>
+            <td th:text="${comment.likes}">
+            </td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="${'/commentLike/' + comment.id}">Like</a>
+                <a class="btn btn-danger btn-sm" th:href="${'/commentDislike/' + comment.id}">Dislike</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+    <a class="btn btn-info" href="/newPost">Nuevo Post</a>
+    <a class="btn btn-secondary" href="/">Volver a vista general</a>
+    <h1>Posts</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Post
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+        <tr th:each="post : ${postList}">
+            <td th:text="${post.id}">
+            </td>
+            <td th:text="${post.text}">
+            </td>
+            <td th:text="${post.postCategory.name}">
+            </td>
+            <td th:text="${post.user.name}">
+            </td>
+            <td>
+                <div class="btn-group" role="group">
+                    <a class="btn btn-success btn-sm" th:href="${'/post/' + post.id}">Ver</a>
+                    <a class="btn btn-primary btn-sm"th:href="${'/editPost/' + post.id}">Editar</a>
+                    <a class="btn btn-danger btn-sm"th:href="${'/deletePost/' + post.id}">Eliminar</a>
+                </div>
+
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+</html>
