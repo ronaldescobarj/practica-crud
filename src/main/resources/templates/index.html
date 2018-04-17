@@ -9,16 +9,19 @@
 <a class="btn btn-info" href="/posts">Ir a posts</a>
 <h1>Vista general</h1>
 <div th:each="post : ${postList}">
-    <b th:text="${post.title}"></b>
-    <p style="text-indent: 5em" th:text="${post.text}"></p>
-    <p style="text-indent: 5em" th:text="${post.creationDate}"></p>
-    <p style="text-indent: 5em" th:text="${post.likes}"></p>
-    <p style="text-indent: 5em" th:text="${post.user.name}"></p>
-    <p style="text-indent: 5em"><b>Comentarios</b></p>
-    <div th:each="comment : ${post.comments}">
-        <p style="text-indent: 10em" th:text="${comment.text}"></p>
-        <p style="text-indent: 10em" th:text="${comment.creationDate}"></p>
-        <p style="text-indent: 10em" th:text="${comment.likes}"></p>
+    <div th:if="${post.showPost} == 1">
+        <b th:text="${post.title}"></b>
+        <p style="text-indent: 5em" th:text="${post.text}"></p>
+        <p style="text-indent: 5em" th:text="${post.creationDate}"></p>
+        <p style="text-indent: 5em" th:text="${post.likes}"></p>
+        <p style="text-indent: 5em" th:text="${post.user.name}"></p>
+        <p style="text-indent: 5em"><b>Comentarios</b></p>
+        <div th:each="comment : ${post.comments}">
+            <p style="text-indent: 10em" th:text="${comment.text}"></p>
+            <p style="text-indent: 10em" th:text="${comment.creationDate}"></p>
+            <p style="text-indent: 10em" th:text="${comment.user.name}"></p>
+            <p style="text-indent: 10em" th:text="${comment.likes}"></p>
+        </div>
     </div>
 </div>
 </body>

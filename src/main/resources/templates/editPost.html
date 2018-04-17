@@ -41,6 +41,13 @@
         <label for="creationDate">Fecha</label>
         <input class="form-control" type="date" name="creationDate" id="creationDate" th:value="${post.creationDate}">
     </div>
+    <div class="col-2 form-group">
+        <label for="showPost">Mostrar</label>
+        <select class="form-control" name="showPost" id="showPost">
+            <option th:value="1" th:selected="(${post.showPost} == 1)">Si</option>
+            <option th:value="0" th:selected="(${post.showPost} == 0)">No</option>
+        </select>
+    </div>
     <input class="btn btn-primary" type="submit" value="Guardar"></input>
 </form>
 </body>

@@ -46,7 +46,19 @@ public class Post {
     private User user;
 
     @NotNull
+    @Column(columnDefinition="int(11) default 0")
+    private Integer showPost=0;
+
+    @NotNull
     private String creationDate;
+
+   public Integer getShowPost() {
+        return showPost;
+    }
+
+    public void setShowPost(Integer showPost) {
+        this.showPost = showPost;
+    }
 
     public String getCreationDate() {
         return creationDate;

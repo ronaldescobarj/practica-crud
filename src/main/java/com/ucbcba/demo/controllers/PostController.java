@@ -72,7 +72,9 @@ public class PostController {
     @RequestMapping("/post/{id}")
     String show(@PathVariable Integer id, Model model) {
         Post post = postService.getPost(id);
+        Iterable<User> users = userService.listAllUsers();
         model.addAttribute("post", post);
+        model.addAttribute("users", users);
         return "show";
     }
 
